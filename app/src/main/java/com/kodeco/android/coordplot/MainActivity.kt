@@ -82,10 +82,13 @@ fun Map(xPercent: Float, yPercent: Float, modifier: Modifier = Modifier) {
         val dotRadius = DOT_DIAMETER / 2
         Box(
             modifier = modifier
+                .offset(
+                    x = (xPercent * PLOT_SIZE - dotRadius).dp,
+                    y = (yPercent * PLOT_SIZE - dotRadius).dp
+                )
                 .size(DOT_DIAMETER.dp)
                 .clip(CircleShape)
                 .background(DOT_BACKGROUND_COLOR)
-                .offset((xPercent * PLOT_SIZE - dotRadius).dp, (yPercent * PLOT_SIZE - dotRadius).dp)
         )
     }
 }
