@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Surface
@@ -15,6 +16,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -23,6 +25,8 @@ import com.kodeco.android.coordplot.ui.theme.MyApplicationTheme
 // Constants
 private const val PLOT_WIDTH = 300
 private val PLOT_BACKGROUND_COLOR = Color.Blue
+private const val DOT_DIAMETER = 36
+private val DOT_BACKGROUND_COLOR = Color.Green
 private val SLIDER_COLOR = Color.DarkGray
 
 class MainActivity : ComponentActivity() {
@@ -36,7 +40,8 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-// Builds out the plot surface
+// Builds out a plot surface that the user can interact with to move a dot on a plot
+// using 2 sliders representing the X & Y axis.
 @Composable
 fun PlotSurface() {
     Surface(
@@ -57,7 +62,6 @@ fun PlotSurface() {
             MapSlider(value = axisYValue, onValueChange = { axisYValue = it })
         }
     }
-
 }
 
 @Preview(showBackground = true)
@@ -70,14 +74,18 @@ fun PlotSurfacePreview() {
 
 @Composable
 fun Map(xPercent: Float, yPercent: Float, modifier: Modifier = Modifier) {
-    // TODO fill out the square map here.
-    //  and then create an inner Box composable
-    //  with a clip shape of CircleShape.
     Box(
         modifier = modifier
             .size(PLOT_WIDTH.dp)
             .background(PLOT_BACKGROUND_COLOR)
-    )
+    ) {
+        Box(
+            modifier = modifier
+                .size(DOT_DIAMETER.dp)
+                .clip(CircleShape)
+                .background(DOT_BACKGROUND_COLOR)
+        )
+    }
 }
 
 @Preview(showBackground = true)
