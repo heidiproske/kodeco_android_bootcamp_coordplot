@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.kodeco.android.coordplot.ui.theme.MyApplicationTheme
 
 // Constants
-private const val PLOT_WIDTH = 300
+private const val PLOT_SIZE = 300
 private val PLOT_BACKGROUND_COLOR = Color.Blue
 private const val DOT_DIAMETER = 36
 private val DOT_BACKGROUND_COLOR = Color.Green
@@ -57,7 +57,7 @@ fun PlotSurface() {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Map(xPercent = 0.5f, yPercent = 0.5f)
+            Map(xPercent = axisXValue, yPercent = axisYValue)
             MapSlider(value = axisXValue, onValueChange = { axisXValue = it })
             MapSlider(value = axisYValue, onValueChange = { axisYValue = it })
         }
@@ -76,14 +76,16 @@ fun PlotSurfacePreview() {
 fun Map(xPercent: Float, yPercent: Float, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
-            .size(PLOT_WIDTH.dp)
+            .size(PLOT_SIZE.dp)
             .background(PLOT_BACKGROUND_COLOR)
     ) {
+        val dotRadius = DOT_DIAMETER / 2
         Box(
             modifier = modifier
                 .size(DOT_DIAMETER.dp)
                 .clip(CircleShape)
                 .background(DOT_BACKGROUND_COLOR)
+                .offset((xPercent * PLOT_SIZE - dotRadius).dp, (yPercent * PLOT_SIZE - dotRadius).dp)
         )
     }
 }
