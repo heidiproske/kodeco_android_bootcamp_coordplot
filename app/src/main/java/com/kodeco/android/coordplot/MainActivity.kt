@@ -21,6 +21,8 @@ import androidx.compose.ui.unit.dp
 import com.kodeco.android.coordplot.ui.theme.MyApplicationTheme
 
 // Constants
+private const val PLOT_WIDTH = 300
+private val PLOT_BACKGROUND_COLOR = Color.Blue
 private val SLIDER_COLOR = Color.DarkGray
 
 class MainActivity : ComponentActivity() {
@@ -73,8 +75,8 @@ fun Map(xPercent: Float, yPercent: Float, modifier: Modifier = Modifier) {
     //  with a clip shape of CircleShape.
     Box(
         modifier = modifier
-            .size(300.dp)
-            .background(Color.Blue)
+            .size(PLOT_WIDTH.dp)
+            .background(PLOT_BACKGROUND_COLOR)
     )
 }
 
