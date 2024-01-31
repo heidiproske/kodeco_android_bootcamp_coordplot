@@ -40,7 +40,12 @@ fun PlotSurface() {
         var axisXValue: Float by rememberSaveable { mutableFloatStateOf(0.5f) }
         var axisYValue: Float by rememberSaveable { mutableFloatStateOf(0.5f) }
 
-        Column {
+        Column(
+            modifier = Modifier
+                .fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             Map(xPercent = 0.5f, yPercent = 0.5f)
             Slider(value = axisXValue, onValueChange = { axisXValue = it })
             Slider(value = axisYValue, onValueChange = { axisYValue = it })
