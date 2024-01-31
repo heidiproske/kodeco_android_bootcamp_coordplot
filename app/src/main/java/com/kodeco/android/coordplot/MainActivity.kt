@@ -36,9 +36,11 @@ import androidx.compose.ui.unit.dp
 import com.kodeco.android.coordplot.ui.theme.MyApplicationTheme
 
 // Constants
-private const val PLOT_SIZE = 300
+private const val PLOT_PADDING = 16 // Breathing room around the plot
+private const val PLOT_SIZE = 300 // Preferred size of the square grid to draw the plot
 private val PLOT_BACKGROUND_COLOR = Color.Blue
 private const val DOT_DIAMETER = 36
+private const val SLIDERS_STARTING_POINT = 0.5f
 private val DOT_BACKGROUND_COLOR = Color.Green
 private val SLIDER_COLOR = Color.DarkGray
 
@@ -61,13 +63,14 @@ fun PlotSurface() {
         modifier = Modifier.fillMaxSize(),
         color = Color.White
     ) {
-        var axisXValue: Float by rememberSaveable { mutableFloatStateOf(0.5f) }
-        var axisYValue: Float by rememberSaveable { mutableFloatStateOf(0.5f) }
+
+        var axisXValue: Float by rememberSaveable { mutableFloatStateOf(SLIDERS_STARTING_POINT) }
+        var axisYValue: Float by rememberSaveable { mutableFloatStateOf(SLIDERS_STARTING_POINT) }
 
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(8.dp),
+                .padding(PLOT_PADDING.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
