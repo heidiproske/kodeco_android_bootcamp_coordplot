@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -18,6 +19,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kodeco.android.coordplot.ui.theme.MyApplicationTheme
+
+// Constants
+private val SLIDER_COLOR = Color.DarkGray
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,8 +51,8 @@ fun PlotSurface() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Map(xPercent = 0.5f, yPercent = 0.5f)
-            Slider(value = axisXValue, onValueChange = { axisXValue = it })
-            Slider(value = axisYValue, onValueChange = { axisYValue = it })
+            MapSlider(value = axisXValue, onValueChange = { axisXValue = it })
+            MapSlider(value = axisYValue, onValueChange = { axisYValue = it })
         }
     }
 
@@ -81,3 +85,26 @@ fun MapPreview() {
         Map(xPercent = 0.5f, yPercent = 0.5f)
     }
 }
+
+@Composable
+fun MapSlider(value: Float, onValueChange: (Float) -> Unit, sliderColor: Color = SLIDER_COLOR) {
+    val colors = SliderDefaults.colors(
+        thumbColor = sliderColor,
+        activeTrackColor = sliderColor,
+        inactiveTrackColor = sliderColor
+    )
+    Slider(
+        value = value,
+        onValueChange = onValueChange,
+        valueRange = 0f..1f,
+        colors = colors,
+        modifier = Modifier
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MapSliderPreview() {
+    MapSlider(value = 0.3f, onValueChange = { /* no-op */ })
+}
+
