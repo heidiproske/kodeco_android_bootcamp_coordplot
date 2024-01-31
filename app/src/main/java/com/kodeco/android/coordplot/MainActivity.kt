@@ -8,8 +8,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -75,6 +77,10 @@ fun PlotSurface() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Map(xPercent = axisXValue, yPercent = axisYValue)
+
+            // Ensure that the dot will never overlap or touch the top slider
+            Spacer(modifier = Modifier.height(DOT_DIAMETER.dp))
+
             MapSlider(value = axisXValue, onValueChange = { axisXValue = it })
             MapSlider(value = axisYValue, onValueChange = { axisYValue = it })
         }
