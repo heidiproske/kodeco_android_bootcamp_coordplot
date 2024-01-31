@@ -5,8 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,10 +37,14 @@ fun PlotSurface() {
         modifier = Modifier.fillMaxSize(),
         color = Color.White
     ) {
-        Map(xPercent = 0.5f, yPercent = 0.5f)
-        //  TODO: This should include a Column composable that
-        //  includes a Map, and two MapSlider composables
-        //  (one slider for each axis).
+        var axisXValue: Float by rememberSaveable { mutableFloatStateOf(0.5f) }
+        var axisYValue: Float by rememberSaveable { mutableFloatStateOf(0.5f) }
+
+        Column {
+            Map(xPercent = 0.5f, yPercent = 0.5f)
+            Slider(value = axisXValue, onValueChange = { axisXValue = it })
+            Slider(value = axisYValue, onValueChange = { axisYValue = it })
+        }
     }
 
 }
