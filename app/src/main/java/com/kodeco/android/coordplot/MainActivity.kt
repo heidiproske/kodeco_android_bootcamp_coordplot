@@ -24,7 +24,6 @@ import com.kodeco.android.coordplot.ui.theme.MyApplicationTheme
 
 // Constants
 private const val DOT_DIAMETER = 36
-
 // Breathing room around the plot, ensuring the dot never touches sides of screen.
 private const val PLOT_PADDING = DOT_DIAMETER / 2 + 4
 private const val PLOT_SIZE = 300 // Preferred size of the square grid to draw the plot
@@ -77,11 +76,13 @@ fun PlotSurface() {
             Spacer(modifier = Modifier.height(DOT_DIAMETER.dp))
 
             MapSlider(
+                title = "X Axis",
                 value = axisXValue,
                 onValueChange = { axisXValue = it },
                 sliderColor = SLIDER_COLOR
             )
             MapSlider(
+                title = "Y Axis",
                 value = axisYValue,
                 onValueChange = { axisYValue = it },
                 sliderColor = SLIDER_COLOR
