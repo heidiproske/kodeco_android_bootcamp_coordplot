@@ -1,6 +1,7 @@
 package com.kodeco.android.coordplot
 
 import android.util.Size
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
@@ -12,11 +13,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kodeco.android.coordplot.ui.theme.MyApplicationTheme
@@ -27,6 +30,7 @@ fun Map(
     yPercent: Float,
     dotSize: Int,
     dotColor: Color,
+    dotImageResId: Int,
     plotSize: Int,
     plotColor: Color,
     modifier: Modifier = Modifier
@@ -50,6 +54,8 @@ fun Map(
         val offsetX = (xPercent * boxSize.width)
         val offsetY = (yPercent * boxSize.height)
 
+        val imageSize = dotSize - 2
+
         Box(
             modifier = modifier
                 .offset(
@@ -59,7 +65,17 @@ fun Map(
                 .size(dotSize.dp)
                 .clip(CircleShape)
                 .background(dotColor)
-        )
+        ) {
+            Image(
+                painter = painterResource(id = dotImageResId),
+                contentDescription = "Plot dot image",
+                modifier = Modifier
+                    .size(imageSize.dp)
+                    .clip(CircleShape)
+                    .background(dotColor)
+                    .align(Alignment.Center)
+            )
+        }
     }
 }
 
@@ -72,6 +88,7 @@ fun MapPreview() {
             yPercent = 0.5f,
             dotSize = 10,
             dotColor = Color.Red,
+            dotImageResId = R.drawable.graph_icon,
             plotSize = 100,
             plotColor = Color.Blue
         )

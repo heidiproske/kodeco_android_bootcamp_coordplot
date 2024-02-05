@@ -68,6 +68,7 @@ fun PlotSurface() {
                 yPercent = axisYValue,
                 dotSize = DOT_DIAMETER,
                 dotColor = DOT_BACKGROUND_COLOR,
+                dotImageResId = R.drawable.graph_icon,
                 plotSize = PLOT_SIZE,
                 plotColor = PLOT_BACKGROUND_COLOR
             )
