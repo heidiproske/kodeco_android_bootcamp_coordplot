@@ -38,10 +38,11 @@ import androidx.compose.ui.unit.dp
 import com.kodeco.android.coordplot.ui.theme.MyApplicationTheme
 
 // Constants
-private const val PLOT_PADDING = 16 // Breathing room around the plot
+private const val DOT_DIAMETER = 36
+// Breathing room around the plot, ensuring the dot never touches sides of screen.
+private const val PLOT_PADDING = DOT_DIAMETER / 2 + 4
 private const val PLOT_SIZE = 300 // Preferred size of the square grid to draw the plot
 private val PLOT_BACKGROUND_COLOR = Color.Blue
-private const val DOT_DIAMETER = 36
 private const val SLIDERS_STARTING_POINT = 0.5f
 private val DOT_BACKGROUND_COLOR = Color.Green
 private val SLIDER_COLOR = Color.DarkGray
