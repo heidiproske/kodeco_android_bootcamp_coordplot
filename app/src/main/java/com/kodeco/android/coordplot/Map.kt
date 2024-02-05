@@ -22,7 +22,15 @@ import androidx.compose.ui.unit.dp
 import com.kodeco.android.coordplot.ui.theme.MyApplicationTheme
 
 @Composable
-fun Map(xPercent: Float, yPercent: Float, dotSize: Int, dotColor: Color, plotSize: Int, plotColor: Color, modifier: Modifier = Modifier) {
+fun Map(
+    xPercent: Float,
+    yPercent: Float,
+    dotSize: Int,
+    dotColor: Color,
+    plotSize: Int,
+    plotColor: Color,
+    modifier: Modifier = Modifier
+) {
     val density = LocalDensity.current.density
     var boxSize by remember { mutableStateOf(Size(0, 0)) }
 
@@ -59,6 +67,13 @@ fun Map(xPercent: Float, yPercent: Float, dotSize: Int, dotColor: Color, plotSiz
 @Composable
 fun MapPreview() {
     MyApplicationTheme {
-        Map(xPercent = 0.5f, yPercent = 0.5f, dotSize = 10, dotColor = Color.Red, plotSize = 100, plotColor = Color.Blue)
+        Map(
+            xPercent = 0.5f,
+            yPercent = 0.5f,
+            dotSize = 10,
+            dotColor = Color.Red,
+            plotSize = 100,
+            plotColor = Color.Blue
+        )
     }
 }
