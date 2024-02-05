@@ -16,8 +16,6 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Slider
-import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -31,7 +29,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -82,8 +79,16 @@ fun PlotSurface() {
             // Ensure that the dot will never overlap or touch the top slider
             Spacer(modifier = Modifier.height(DOT_DIAMETER.dp))
 
-            MapSlider(value = axisXValue, onValueChange = { axisXValue = it })
-            MapSlider(value = axisYValue, onValueChange = { axisYValue = it })
+            MapSlider(
+                value = axisXValue,
+                onValueChange = { axisXValue = it },
+                sliderColor = SLIDER_COLOR
+            )
+            MapSlider(
+                value = axisYValue,
+                onValueChange = { axisYValue = it },
+                sliderColor = SLIDER_COLOR
+            )
         }
     }
 }
@@ -137,26 +142,3 @@ fun MapPreview() {
         Map(xPercent = 0.5f, yPercent = 0.5f)
     }
 }
-
-@Composable
-fun MapSlider(value: Float, onValueChange: (Float) -> Unit, sliderColor: Color = SLIDER_COLOR) {
-    val colors = SliderDefaults.colors(
-        thumbColor = sliderColor,
-        activeTrackColor = sliderColor,
-        inactiveTrackColor = sliderColor
-    )
-    Slider(
-        value = value,
-        onValueChange = onValueChange,
-        valueRange = 0f..1f,
-        colors = colors,
-        modifier = Modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun MapSliderPreview() {
-    MapSlider(value = 0.3f, onValueChange = { /* no-op */ })
-}
-
